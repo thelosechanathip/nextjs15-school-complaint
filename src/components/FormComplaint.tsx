@@ -48,10 +48,11 @@ const FormComplaint = () => {
                 // แสดง error ที่สคริปต์ส่งกลับมา
                 toast.error(res.data.message || 'เกิดข้อผิดพลาดบางอย่างที่เซิร์ฟเวอร์');
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const err = error as Error
             // จัดการ Network Error (เช่น CORS ที่ถูกบล็อก หรือปัญหาการเชื่อมต่อ)
             console.error("Submission failed:", error);
-            if (error.code === 'ERR_NETWORK') {
+            if (err.message === 'ERR_NETWORK') {
                 toast.error("ส่งข้อมูลไม่สำเร็จ: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบ CORS ใน Google Script");
             } else {
                 toast.error("ไม่สามารถส่งข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ");
