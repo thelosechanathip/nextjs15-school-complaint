@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const API_URL_GOOGLE_SHEET = 'https://script.google.com/macros/s/AKfycbwJtinSr8M-Cmq6dtCAmlv4iHXe5sDDRMmEkCAAu6bRJYtXoIYoMBxQ3JUnHN9n_WEe/exec'
+const API_URL_GOOGLE_SHEET = 'https://script.google.com/macros/s/AKfycbyTKExdjIQ1LKMqeF8fL7CXhmThEzWB--i2V_e4qo4jtT52QJZ49DQtdaD7pN7nidLc/exec'
 
 const style: React.CSSProperties = {
     display: 'flex',
