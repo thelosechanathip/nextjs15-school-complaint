@@ -5,7 +5,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 // --- (สำคัญ!) นำ URL ใหม่ที่ได้จาก Google Apps Script ในขั้นตอนล่าสุดมาวางที่นี่ ---
-const API_URL_GOOGLE_SHEET = 'https://script.google.com/macros/s/AKfycbxTHtucfQy9ReBanvJ9mQShvugkwnTd-iNa8hOWPE-BdMPicS0tykiJ7EBsTjoEJ0Sj/exec';
+const API_URL_GOOGLE_SHEET = 'https://script.google.com/macros/s/AKfycbzufXKOZ6JRWenfJc_2p-adcs-oXFoZsD8OyLxEdyRbhmdqSo1gYVEibZawFBogEie2/exec';
 
 const style: React.CSSProperties = {
     display: 'flex',
