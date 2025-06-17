@@ -57,7 +57,7 @@ const FormComplaint = () => {
     const watchedRelationshipToSchoolType = watch('relationship_to_school_type');
 
     return (
-        <div className="container mx-auto my-12 px-6 md:my-20">
+        <div className="container mx-auto my-12 px-6 md:my-20 bg-gray-300">
             <Card className='shadow-2xl'>
                 <div className="flex justify-center">
                     <h1 className="text-2xl font-bold text-center md:text-3xl">
