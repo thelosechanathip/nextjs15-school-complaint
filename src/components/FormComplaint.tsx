@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
+import { LoadingOutlined } from '@ant-design/icons'
 
 const style: React.CSSProperties = {
     display: 'flex',
@@ -25,7 +26,7 @@ interface IFormInput {
 }
 
 const FormComplaint = () => {
-    const { handleSubmit, control, watch, formState: { errors }, reset } = useForm<IFormInput>({
+    const { handleSubmit, control, watch, formState: { errors, isSubmitting }, reset  } = useForm<IFormInput>({
         defaultValues: {
             complaint_type: 'การทุจริตในการจัดซื้อจัดจ้าง',
             complaint_other_details: '',
@@ -162,8 +163,8 @@ const FormComplaint = () => {
                                         กลับสู่หน้าหลัก
                                     </Button>
                                 </Link>
-                                <Button type="primary" htmlType="submit" size="large">
-                                    ส่งเรื่องร้องเรียน
+                                <Button type="primary" htmlType="submit" size="large" disabled={isSubmitting}> {/* <--- เพิ่ม disabled={isSubmitting} ตรงนี้ */}
+                                    {isSubmitting ? <LoadingOutlined /> : 'ส่งเรื่องร้องเรียน'}
                                 </Button>
                             </div>
                         </Form.Item>
