@@ -4,7 +4,6 @@ import AllMenu from '@/components/home/AllMenu'
 import React from 'react'
 
 export default function Home() {
-  console.log(process.env.DATABASE_URL)
   return (
     <>
       <div className='container mx-auto mt-20'>

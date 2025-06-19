@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client'
 
 // กำหนด type สำหรับ globalThis (เพื่อรองรับ TypeScript)
 declare global {
-    // eslint-disable-next-line no-var
     var prisma: PrismaClient | undefined
 }
 
