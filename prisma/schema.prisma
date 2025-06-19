@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Complaints {
+  id                                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  complaint_type                       String
+  complaint_other_details              String?
+  description                          String
+  incident_location                    String
+  fullname                             String
+  phone_number                         String?
+  email                                String?
+  relationship_to_school_type          String
+  relationship_to_school_other_details String?
+  createdAt                            DateTime @default(now())
+}

@@ -1,17 +1,16 @@
 'use client'
+
 import { Card, Button, Form, Input, Radio } from 'antd'
 import { useForm, Controller } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
-// --- (สำคัญ!) นำ URL ใหม่ที่ได้จาก Google Apps Script ในขั้นตอนล่าสุดมาวางที่นี่ ---
-const API_URL_GOOGLE_SHEET = 'https://script.google.com/macros/s/AKfycbxlT_DmGe2A0_0iwktfaEIhr2uWBKy5_ZMKEnXVmjHFZnDbjV0-5jfxr6sB8wxpjxEU/exec';
+import Link from 'next/link'
 
 const style: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     gap: 8,
-};
+}
 
 interface IFormInput {
     complaint_type: string
@@ -19,7 +18,7 @@ interface IFormInput {
     description: string
     incident_location: string
     fullname: string
-    phone_number: number | string
+    phone_number: number
     email: string
     relationship_to_school_type: string
     relationship_to_school_other_details: string
@@ -33,35 +32,28 @@ const FormComplaint = () => {
             relationship_to_school_type: 'นักเรียน',
             relationship_to_school_other_details: ''
         }
-    });
+    })
 
     const onSubmit = async (data: IFormInput) => {
         try {
-            // ส่งข้อมูลไปที่ Google Apps Script
-            const res = await axios.post(API_URL_GOOGLE_SHEET, data);
-
-            // ตรวจสอบสถานะที่ส่งกลับมาจากสคริปต์
-            if (res.data.status === 'success') {
-                toast.success("ส่งเรื่องร้องเรียนสำเร็จแล้ว!");
-                reset(); // รีเซ็ตฟอร์ม
-            } else {
-                // แสดง error ที่สคริปต์ส่งกลับมา
-                toast.error(res.data.message || 'เกิดข้อผิดพลาดบางอย่างที่เซิร์ฟเวอร์');
-            }
+            console.log(data)
+            const res = await axios.post('/api/complaints', data)
+            toast.success(res.data.message)
+            reset()
         } catch (error: unknown) {
             const err = error as Error
             // จัดการ Network Error (เช่น CORS ที่ถูกบล็อก หรือปัญหาการเชื่อมต่อ)
-            console.error("Submission failed:", error);
+            console.error("Submission failed:", error)
             if (err.message === 'ERR_NETWORK') {
-                toast.error("ส่งข้อมูลไม่สำเร็จ: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบ CORS ใน Google Script");
+                toast.error("ส่งข้อมูลไม่สำเร็จ: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบ CORS ใน Google Script")
             } else {
-                toast.error("ไม่สามารถส่งข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ");
+                toast.error("ไม่สามารถส่งข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ")
             }
         }
-    };
+    }
 
-    const watchedComplaintType = watch('complaint_type');
-    const watchedRelationshipToSchoolType = watch('relationship_to_school_type');
+    const watchedComplaintType = watch('complaint_type')
+    const watchedRelationshipToSchoolType = watch('relationship_to_school_type')
 
     return (
         <div className="container mx-auto my-12 px-6 md:my-20">
@@ -164,9 +156,16 @@ const FormComplaint = () => {
                         )}
                         {/* Submit Button */}
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" size="large">
-                                ส่งเรื่องร้องเรียน
-                            </Button>
+                            <div className='flex justify-between'>
+                                <Link href="/">
+                                    <Button type="primary" danger htmlType="submit" size="large">
+                                        กลับสู่หน้าหลัก
+                                    </Button>
+                                </Link>
+                                <Button type="primary" htmlType="submit" size="large">
+                                    ส่งเรื่องร้องเรียน
+                                </Button>
+                            </div>
                         </Form.Item>
                     </Form>
                 </div>
@@ -175,4 +174,4 @@ const FormComplaint = () => {
     )
 }
 
-export default FormComplaint;
+export default FormComplaint
