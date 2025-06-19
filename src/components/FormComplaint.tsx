@@ -6,6 +6,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
 import { LoadingOutlined } from '@ant-design/icons'
+import { useRouter } from 'next/navigation'
 
 const style: React.CSSProperties = {
     display: 'flex',
@@ -26,6 +27,8 @@ interface IFormInput {
 }
 
 const FormComplaint = () => {
+    const router = useRouter()
+
     const { handleSubmit, control, watch, formState: { errors, isSubmitting }, reset  } = useForm<IFormInput>({
         defaultValues: {
             complaint_type: 'การทุจริตในการจัดซื้อจัดจ้าง',
@@ -41,6 +44,7 @@ const FormComplaint = () => {
             const res = await axios.post('/api/complaints', data)
             toast.success(res.data.message)
             reset()
+            router.push('/')
         } catch (error: unknown) {
             const err = error as Error
             // จัดการ Network Error (เช่น CORS ที่ถูกบล็อก หรือปัญหาการเชื่อมต่อ)
