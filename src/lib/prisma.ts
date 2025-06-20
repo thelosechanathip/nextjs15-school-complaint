@@ -9,7 +9,7 @@ declare global {
 // ถ้ามี ให้ใช้ตัวที่มีอยู่แล้ว (ป้องกันการสร้างหลาย instance ใน development)
 // ถ้าไม่มี ให้สร้างใหม่
 const prisma = global.prisma || new PrismaClient({
-    log: ['query'], // สำหรับดู query ใน console (เฉพาะ dev mode)
+    // log: ['query'], // สำหรับดู query ใน console (เฉพาะ dev mode)
 })
 
 // ใน production, ไม่ต้องเก็บ instance ไว้ใน globalThis
@@ -17,7 +17,7 @@ const prisma = global.prisma || new PrismaClient({
 if (process.env.NODE_ENV === 'production') {
     // ถ้าเป็น production, ให้เชื่อมต่อทันที
     prisma.$connect().then(() => {
-        console.log('✅ Prisma connected in production.');
+        // console.log('✅ Prisma connected in production.');
     }).catch((err) => {
         console.error('❌ Failed to connect Prisma in production:', err)
     })
