@@ -8,9 +8,24 @@ const AllMenu = () => {
     return (
         <>
             <Link href="/complaint">
-                <Card>
-                    <Meta title="ระบบแจ้งเรื่องร้องเรียนการทุจริต" />
-                </Card>
+                <div className="hover:scale-[105%] transition-all">
+                    <Card>
+                        <Meta
+                            title="CNS(Complaint Notification System)"
+                            description="ระบบแจ้งเรื่องร้องเรียนการทุจริต"
+                        />
+                    </Card>
+                </div>
+            </Link>
+            <Link href="/school_transfer">
+                <div className="hover:scale-[105%] transition-all">
+                    <Card>
+                        <Meta
+                            title="STNS(Student Transfer Notification System)"
+                            description="ระบบแจ้งย้ายนักเรียน"
+                        />
+                    </Card>
+                </div>
             </Link>
         </>
     )

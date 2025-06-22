@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import AntdRegistry from "./AntdRegistry"
 import { ToastContainer } from 'react-toastify'
 import NextTopLoader from 'nextjs-toploader'
-import Footer from "@/components/home/Footer"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-geist-sans" })
 
@@ -35,10 +34,7 @@ export default function RootLayout({
           />
           <ToastContainer />
           <div id="root-layout-container">
-            <main>
-              {children}
-            </main>
-            <Footer />
+            {children}
           </div>
         </AntdRegistry>
       </body>

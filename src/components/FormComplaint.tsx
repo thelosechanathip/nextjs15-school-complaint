@@ -40,7 +40,6 @@ const FormComplaint = () => {
 
     const onSubmit = async (data: IFormInput) => {
         try {
-            console.log(data)
             const res = await axios.post('/api/complaints', data)
             toast.success(res.data.message)
             reset()

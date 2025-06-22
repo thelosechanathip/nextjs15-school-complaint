@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
     // และตรวจสอบการเชื่อมต่อ
     global.prisma = prisma
     prisma.$connect().then(() => {
-        console.log('✅ Successfully connected to the database.')
+        // console.log('✅ Successfully connected to the database.')
     }).catch((err) => {
         console.error('❌ Failed to connect to the database!')
         console.error('Error details:', err.message)
