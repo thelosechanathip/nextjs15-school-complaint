@@ -7,16 +7,16 @@ export async function GET(req: NextRequest) {
     if (!token) return NextResponse.json({ message: 'ไม่มีสิทธิ์ในการเข้าใช้งาน!' }, { status: 401 })
 
     try {
-        const complaints = await prisma.complaints.findMany()
+        const users = await prisma.users.findMany()
 
         // ตรวจสอบว่า array ว่างเปล่าหรือไม่ ถ้าไม่มีข้อมูล
-        if (complaints.length === 0) {
+        if (users.length === 0) {
             return NextResponse.json({ message: 'ไม่พบรายการร้องเรียน', data: [] }, { status: 200 })
         }
 
-        return NextResponse.json(complaints, { status: 200 })
+        return NextResponse.json(users, { status: 200 })
     } catch (error: unknown) {
-        console.error('Error fetching complaints:', error)
-        return NextResponse.json({ error: 'Internal Server Error: Failed to fetch complaints' }, { status: 500 })
+        console.error('Error fetching users:', error)
+        return NextResponse.json({ error: 'Internal Server Error: Failed to fetch users' }, { status: 500 })
     }
 }

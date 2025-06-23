@@ -1,21 +1,21 @@
-import React, { SetStateAction, Dispatch } from 'react';
+import React, { SetStateAction, Dispatch } from 'react'
 import {
     FileOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+} from '@ant-design/icons'
+import { Layout, Menu } from 'antd'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-const { Sider } = Layout;
+const { Sider } = Layout
 
 interface SidebarProps {
-    collapsed: boolean;
-    setCollapsed: Dispatch<SetStateAction<boolean>>;
-    isMobile: boolean;
+    collapsed: boolean
+    setCollapsed: Dispatch<SetStateAction<boolean>>
+    isMobile: boolean
 }
 
 const Sidebar = ({ collapsed, setCollapsed, isMobile }: SidebarProps) => {
-    const pathname = usePathname();
+    const pathname = usePathname()
 
     // กำหนดรายการเมนูของคุณ
     const menuItems = [
@@ -40,12 +40,19 @@ const Sidebar = ({ collapsed, setCollapsed, isMobile }: SidebarProps) => {
                 <Link href="/dashboard/school_transfer">รายการเรื่องแจ้งย้ายนักเรียน</Link>
             ),
         },
-    ];
+        {
+            key: '/dashboard/user',
+            icon: <FileOutlined />,
+            label: (
+                <Link href="/dashboard/user">จัดการข้อมูล User</Link>
+            ),
+        },
+    ]
 
     const getActiveKey = () => {
         const foundItem = menuItems.find(item => pathname === item.key)
         return foundItem ? foundItem.key : ''
-    };
+    }
 
 
     return (

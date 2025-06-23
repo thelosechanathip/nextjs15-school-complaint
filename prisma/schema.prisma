@@ -14,6 +14,17 @@ model Users {
   role      String   @default("member")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  notifies  Notify[]
+}
+
+model Notify {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  notify_name  String
+  notify_token String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  Users        Users?   @relation(fields: [usersId], references: [id])
+  usersId      String?  @db.ObjectId
 }
 
 model Complaints {
