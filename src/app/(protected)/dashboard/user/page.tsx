@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import UserModal from '@/components/protected/users/UserModal'
 import { PlusCircleOutlined } from '@ant-design/icons'
 import { useUserStore } from '@/stores/user.store'
-import { Table, Spin, Alert } from 'antd'
+import { Table, Spin, Alert, Tooltip } from 'antd'
 
 const UserPage = () => {
     const { showModal, setTitle, setButtonTitle, fetchUser, users, loading, error } = useUserStore()
@@ -77,7 +77,9 @@ const UserPage = () => {
             <div className="flex justify-between items-center">
                 <h1 className='text-2xl font-bold'>ระบบการจัดการ User</h1>
                 <button type="button" className="cursor-pointer text-3xl hover:scale-[105%]" onClick={handleClickCreateData}>
-                    <PlusCircleOutlined />
+                    <Tooltip title="เพิ่มข้อมูล">
+                        <PlusCircleOutlined />
+                    </Tooltip>
                 </button>
             </div>
             <hr className='my-3 text-gray-300' />

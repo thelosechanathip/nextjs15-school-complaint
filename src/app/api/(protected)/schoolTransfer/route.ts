@@ -8,13 +8,17 @@ export async function GET(req: NextRequest) {
 
     try {
         const schoolTransfers = await prisma.schoolTransfers.findMany()
+        const schoolTransferCount = await prisma.schoolTransfers.count()
 
         // ตรวจสอบว่า array ว่างเปล่าหรือไม่ ถ้าไม่มีข้อมูล
         if (schoolTransfers.length === 0) {
             return NextResponse.json({ message: 'ไม่พบรายการร้องเรียน', data: [] }, { status: 200 })
         }
 
-        return NextResponse.json(schoolTransfers, { status: 200 })
+        return NextResponse.json({
+            schoolTransfers,
+            schoolTransferCount
+        }, { status: 200 })
     } catch (error: unknown) {
         console.error('Error fetching schoolTransfers:', error)
         return NextResponse.json({ error: 'Internal Server Error: Failed to fetch schoolTransfers' }, { status: 500 })
