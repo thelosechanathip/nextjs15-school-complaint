@@ -1,4 +1,3 @@
-// src/app/(protected)/dashboard/complaint/page.tsx
 'use client'
 
 import React, { useEffect } from 'react'

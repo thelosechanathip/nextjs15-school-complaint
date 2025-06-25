@@ -14,17 +14,6 @@ model Users {
   role      String   @default("member")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  notifies  Notify[]
-}
-
-model Notify {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  notify_name  String
-  notify_token String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  Users        Users?   @relation(fields: [usersId], references: [id])
-  usersId      String?  @db.ObjectId
 }
 
 model Complaints {
@@ -38,5 +27,29 @@ model Complaints {
   email                                String?
   relationship_to_school_type          String
   relationship_to_school_other_details String?
+  createdAt                            DateTime @default(now())
+}
+
+model SchoolTransfers {
+  id                                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  school_transfer_parent_pname         String
+  school_transfer_parent_fname         String
+  school_transfer_parent_lname         String
+  school_transfer_address              String
+  school_transfer_phonenumber          String
+  school_transfer_student_pname        String
+  school_transfer_student_fname        String
+  school_transfer_student_lname        String
+  school_transfer_student_class        String
+  school_transfer_to                   String
+  school_transfer_sub_district         String
+  school_transfer_district             String
+  school_transfer_province             String
+  school_transfer_postalnumber         String
+  school_transfer_schoolphonenumber    String
+  relationship_to_school_type          String
+  relationship_to_school_other_details String?
+  description                          String
+  description_details                  String?
   createdAt                            DateTime @default(now())
 }

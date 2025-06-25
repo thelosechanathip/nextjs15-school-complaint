@@ -82,7 +82,6 @@ const FormComplaint = () => {
                         layout="vertical"
                         style={{ maxWidth: 600, margin: '0 auto' }}
                     >
-                        {/* ส่วนของฟอร์ม ไม่ได้แก้ไขโค้ด */}
                         {/* Complaint Type */}
                         <Form.Item label="ประเภทเรื่องร้องเรียน" validateStatus={errors.complaint_type ? 'error' : ''} help={errors.complaint_type?.message}>
                             <Controller name="complaint_type" control={control} rules={{ required: 'กรุณาเลือกประเภทเรื่องร้องเรียน' }}
@@ -93,49 +92,55 @@ const FormComplaint = () => {
                                             { value: 'การเรียกรับผลประโยชน์', label: 'การเรียกรับผลประโยชน์' },
                                             { value: 'การละเมิดสิทธิ์นักเรียน', label: 'การละเมิดสิทธิ์นักเรียน' },
                                             { value: 'พฤติกรรมไม่เหมาะสมของครู/บุคลากร', label: 'พฤติกรรมไม่เหมาะสมของครู/บุคลากร' },
-                                            { value: 'complaintTypeOther', label: 'อื่นๆ (โปรดระบุ)' },
+                                            { value: 'other', label: 'อื่นๆ (โปรดระบุ)' },
                                         ]}
                                     />
                                 )}
                             />
                         </Form.Item>
-                        {watchedComplaintType === 'complaintTypeOther' && (
+                        {watchedComplaintType === 'other' && (
                             <Form.Item label="ระบุรายละเอียดเพิ่มเติม" validateStatus={errors.complaint_other_details ? 'error' : ''} help={errors.complaint_other_details?.message}>
                                 <Controller name="complaint_other_details" control={control} rules={{ required: 'กรุณากรอกรายละเอียด' }}
                                     render={({ field }) => <Input {...field} variant="filled" placeholder="โปรดระบุ" />}
                                 />
                             </Form.Item>
                         )}
+
                         {/* Description */}
                         <Form.Item label="โปรดอธิบายรายละเอียดของเหตุการณ์" validateStatus={errors.description ? 'error' : ''} help={errors.description?.message}>
                             <Controller name="description" control={control} rules={{ required: 'กรุณากรอกคำอธิบาย' }}
                                 render={({ field }) => <Input.TextArea {...field} rows={4} variant="filled" placeholder="กรอกคำอธิบายรายละเอียดของเหตุการณ์" />}
                             />
                         </Form.Item>
+                        
                         {/* Location */}
                         <Form.Item label="สถานที่เกิดเหตุการณ์" validateStatus={errors.incident_location ? 'error' : ''} help={errors.incident_location?.message}>
                             <Controller name="incident_location" control={control} rules={{ required: 'กรุณากรอกสถานที่' }}
                                 render={({ field }) => <Input {...field} variant="filled" placeholder="กรอกสถานที่เกิดเหตุการณ์" />}
                             />
                         </Form.Item>
+
                         {/* Full Name */}
                         <Form.Item label="ชื่อ-นามสกุล (ผู้ร้องเรียน)" validateStatus={errors.fullname ? 'error' : ''} help={errors.fullname?.message}>
                             <Controller name="fullname" control={control} rules={{ required: 'กรุณากรอกชื่อ-นามสกุล' }}
                                 render={({ field }) => <Input {...field} variant="filled" placeholder="กรอกชื่อ-นามสกุล (ผู้ร้องเรียน)" />}
                             />
                         </Form.Item>
+
                         {/* Phone Number */}
                         <Form.Item label="เบอร์โทรศัพท์ (ไม่บังคับ)">
                             <Controller name="phone_number" control={control}
                                 render={({ field }) => <Input {...field} variant="filled" placeholder="กรอกเบอร์โทรศัพท์" />}
                             />
                         </Form.Item>
+
                         {/* Email */}
                         <Form.Item label="Email (ไม่บังคับ)">
                             <Controller name="email" control={control}
                                 render={({ field }) => <Input {...field} variant="filled" placeholder="กรอก Email" />}
                             />
                         </Form.Item>
+
                         {/* Relationship */}
                         <Form.Item label="ความสัมพันธ์กับโรงเรียน" validateStatus={errors.relationship_to_school_type ? 'error' : ''} help={errors.relationship_to_school_type?.message}>
                             <Controller name="relationship_to_school_type" control={control} rules={{ required: 'กรุณาเลือกความสัมพันธ์' }}
@@ -145,19 +150,20 @@ const FormComplaint = () => {
                                             { value: 'นักเรียน', label: 'นักเรียน' },
                                             { value: 'ผู้ปกครอง', label: 'ผู้ปกครอง' },
                                             { value: 'ครู/บุคลากร', label: 'ครู/บุคลากร' },
-                                            { value: 'relationOther', label: 'อื่นๆ (โปรดระบุ)' },
+                                            { value: 'other', label: 'อื่นๆ (โปรดระบุ)' },
                                         ]}
                                     />
                                 )}
                             />
                         </Form.Item>
-                        {watchedRelationshipToSchoolType === 'relationOther' && (
+                        {watchedRelationshipToSchoolType === 'other' && (
                             <Form.Item label="ระบุรายละเอียดเพิ่มเติม" validateStatus={errors.relationship_to_school_other_details ? 'error' : ''} help={errors.relationship_to_school_other_details?.message}>
                                 <Controller name="relationship_to_school_other_details" control={control} rules={{ required: 'กรุณากรอกรายละเอียด' }}
                                     render={({ field }) => <Input {...field} variant="filled" placeholder="โปรดระบุ" />}
                                 />
                             </Form.Item>
                         )}
+                        
                         {/* Submit Button */}
                         <Form.Item>
                             <div className='flex justify-between'>

@@ -1,4 +1,4 @@
-import { string, z } from "zod"
+import { z } from "zod"
 
 export const RegisterSchema = z.object({
     username: z.string(),
@@ -14,6 +14,6 @@ export type TLoginSchema = z.infer<typeof LoginSchema>
 
 export const VerifyTokenSchema = z.object({
     username: z.string(),
-    role: string()
+    role: z.string()
 })
 export type TVerifyTokenSchema = z.infer<typeof VerifyTokenSchema>
